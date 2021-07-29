@@ -14,7 +14,7 @@ exports.postSignUp = async (req, res, next) => {
   const password = req.body.password;
   const user = User.build({email,password,firstName,lastName});
   await user.save()
-  res.sendStatus(200)
+  res.send(user)
 };
 
 exports.postSignIn = async (req, res, next) => {
