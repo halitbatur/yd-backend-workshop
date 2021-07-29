@@ -10,7 +10,7 @@ const userRouter = require("./routes/users");
 // Database
 const db = require("./util/database")
 
-db.sync()
+
 app.set("view engine", "ejs");
 app.set("views", "./views");
 
@@ -30,6 +30,9 @@ app.use((req, res, next) => {
 
 app.use(userRouter);
 
-app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`);
-});
+db.sync().then(() => {
+  app.listen(port, () => {
+    console.log(`Example app listening at http://localhost:${port}`);
+  });
+}).catch(err => console.log(err))
+
