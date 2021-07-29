@@ -10,17 +10,13 @@ const userRouter = require("./routes/users");
 // Database
 const db = require("./util/database")
 
-
+db.sync()
 app.set("view engine", "ejs");
 app.set("views", "./views");
 
 app.use(express.static(path.join(__dirname, "public")));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-
-// app.get("/", (req, res, next) => {
-//   res.render("index.ejs");
-// });
 
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
