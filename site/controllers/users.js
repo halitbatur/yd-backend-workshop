@@ -22,5 +22,10 @@ exports.postSignIn = async (req, res, next) => {
   const email = req.body.email;
   const password = req.body.password;
   const user = await User.findOne({where :{email}})
-  res.send(user)
+  if(user?.password === password){
+    res.send(user)
+  }else{
+    res.status(400).send('Incorrect userName or password')
+  }
+ 
 };
